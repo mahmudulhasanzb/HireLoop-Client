@@ -91,7 +91,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden"
+          className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden"
           aria-label="Toggle Menu"
         >
           {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -121,20 +121,20 @@ export default function Navbar() {
           })}
 
           <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
-            <Button
-              href="/login"
-              variant="flat"
-              className="h-12 bg-white/5 font-medium text-white"
-            >
-              Sign In
-            </Button>
+            <Link href="/login">
+              <Button
+                variant="flat"
+                className="h-12 bg-white/5 font-medium text-white"
+              >
+                Sign In
+              </Button>
+            </Link>
 
-            <Button
-              href="/register"
-              className="h-12 bg-white font-semibold text-black"
-            >
-              Get Started
-            </Button>
+            <Link href="/register">
+              <Button className="h-12 bg-white font-semibold text-black">
+                Sign Up
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
