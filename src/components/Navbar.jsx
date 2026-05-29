@@ -10,6 +10,7 @@ import {
   CreditCard,
 } from 'lucide-react';
 
+
 const navItems = [
   {
     label: 'Browse Jobs',
@@ -71,7 +72,7 @@ export default function Navbar() {
           <div className="h-6 w-px bg-white/10" />
 
           <div className="flex items-center gap-3">
-            <Link href="/login">
+            <Link href="/signin">
               <Button
                 variant="light"
                 className="font-medium text-violet-400 hover:bg-white/5"
@@ -80,7 +81,7 @@ export default function Navbar() {
               </Button>
             </Link>
 
-            <Link href="/register">
+            <Link href="/signup">
               <Button className="rounded-2xl bg-white px-6 font-semibold text-black hover:scale-[1.02] transition-transform duration-200">
                 Sign Up
               </Button>
@@ -121,7 +122,7 @@ export default function Navbar() {
           })}
 
           <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
-            <Link href="/login">
+            <Link href="/signin">
               <Button
                 variant="flat"
                 className="h-12 bg-white/5 font-medium text-white"
@@ -130,7 +131,7 @@ export default function Navbar() {
               </Button>
             </Link>
 
-            <Link href="/register">
+            <Link href="/signup">
               <Button className="h-12 bg-white font-semibold text-black">
                 Sign Up
               </Button>
