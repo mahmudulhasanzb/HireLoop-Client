@@ -22,9 +22,10 @@ export default function SignInPage() {
 
     const { email, password } = userData;
 
-    const { data, error } = await authClient.SignIn.email({
+    const { data, error } = await authClient.signIn.email({
       email,
       password,
+      callbackURL: '/',
     });
 
     console.log({ data, error });

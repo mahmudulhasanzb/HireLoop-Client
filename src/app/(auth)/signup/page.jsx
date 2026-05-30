@@ -19,19 +19,26 @@ const roles = [
 ];
 
 export default function SignUpPage() {
+  const router = useRouter();
   const onSubmit = async e => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
-    const { name, email, password, role } = userData;
+    const { name, email, password, image } = userData;
 
-    const { data, error } = await authClient.signUp.email({
-      name,
-      email,
-      password,
-      role,
-    });
-    console.log({ data, error });
+    const { data, error } = await authClient.signUp.email(
+      {
+        name,
+        email,
+        password,
+        image,
+      },
+      {
+        onSuccess: () => {
+          router.push('/');
+        },
+      },
+    );
   };
 
   return (
@@ -98,7 +105,7 @@ export default function SignUpPage() {
             />
           </div>
 
-          <div className="flex flex-col gap-1.5">
+          {/* <div className="flex flex-col gap-1.5">
             <label className="text-sm font-medium text-white">
               Select Role
             </label>
@@ -142,7 +149,7 @@ export default function SignUpPage() {
                 </svg>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <Input
             isRequired

@@ -9,7 +9,8 @@ import {
   Building2,
   CreditCard,
 } from 'lucide-react';
-
+import { authClient, useSession } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   {
@@ -31,6 +32,16 @@ const navItems = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  const { data } = useSession();
+  const user = data?.user;
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.refresh();
+    router.push('/signin');
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-2xl">
@@ -70,23 +81,34 @@ export default function Navbar() {
           </ul>
 
           <div className="h-6 w-px bg-white/10" />
+          {!user ? (
+            <div className="flex items-center gap-3">
+              <Link href="/signin">
+                <Button
+                  variant="light"
+                  className="font-medium text-violet-400 hover:bg-white/5"
+                >
+                  Sign In
+                </Button>
+              </Link>
 
-          <div className="flex items-center gap-3">
-            <Link href="/signin">
+              <Link href="/signup">
+                <Button className="rounded-2xl bg-white px-6 font-semibold text-black hover:scale-[1.02] transition-transform duration-200">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <>
+              <h1 className="font-semibold text-white">{user?.name}</h1>
               <Button
-                variant="light"
-                className="font-medium text-violet-400 hover:bg-white/5"
+                onClick={handleLogout}
+                className="rounded-2xl bg-red-300 px-6 font-semibold text-red-500 hover:scale-[1.02] transition-transform duration-200"
               >
-                Sign In
+                Logout
               </Button>
-            </Link>
-
-            <Link href="/signup">
-              <Button className="rounded-2xl bg-white px-6 font-semibold text-black hover:scale-[1.02] transition-transform duration-200">
-                Sign Up
-              </Button>
-            </Link>
-          </div>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
