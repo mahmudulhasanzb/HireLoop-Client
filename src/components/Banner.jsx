@@ -50,7 +50,7 @@ export default function Banner() {
       onMouseLeave={() => setIsHovered(false)}
       className="relative overflow-hidden bg-black px-4 pb-28 pt-16 text-white sm:px-6 lg:px-8 min-h-[85vh] flex items-center"
     >
-      {/* Style overrides for custom animations */}
+      {/* Style for custom animations */}
       <style>{`
         @keyframes gradient-shift {
           0% { background-position: 0% 50%; }
@@ -109,8 +109,8 @@ export default function Banner() {
 
           {/* Description */}
           <p className="mt-6 text-base sm:text-lg text-white/60 text-center leading-relaxed max-w-xl">
-            HireLoop is the intelligent developer-first job platform. Upload
-            your profile and let our AI matching engine source the perfect role.
+            HireLoop is the next-generation developer-first career engine. Upload
+            your profile and let our AI matchmaker connect you with elite tech teams.
           </p>
 
           {/* Micro Highlights */}
