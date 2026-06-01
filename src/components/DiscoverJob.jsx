@@ -38,12 +38,14 @@ const DiscoverJob = () => {
   return (
     <div className="max-w-7xl mx-auto my-24 px-4 sm:px-6 lg:px-8">
       {/* Section Header */}
-      <div className="text-center mb-16">
-        <span className="text-xs font-bold uppercase tracking-widest text-violet-400 bg-violet-500/10 px-3 py-1.5 rounded-full border border-violet-500/20">
+      <div className="text-center mb-20">
+        <div className="flex items-center justify-center gap-2.5 text-xs font-bold tracking-widest text-white/50 uppercase">
+          <span className="w-1.5 h-1.5 bg-violet-600 block shrink-0"></span>
           Smart Job Discovery
-        </span>
-        <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-          The roles you'd never <br className="hidden sm:inline" />
+          <span className="w-1.5 h-1.5 bg-violet-600 block shrink-0"></span>
+        </div>
+        <h2 className="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          The roles you'd never <br />
           find by searching
         </h2>
       </div>
