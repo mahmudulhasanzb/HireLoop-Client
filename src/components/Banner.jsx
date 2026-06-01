@@ -24,17 +24,7 @@ export default function Banner() {
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
 
-  // Mouse hover glow effect
-  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-  const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
 
   const handleSearch = () => {
     const params = new URLSearchParams();
@@ -44,12 +34,7 @@ export default function Banner() {
   };
 
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden bg-black px-4 pb-28 pt-16 text-white sm:px-6 lg:px-8 min-h-[85vh] flex items-center"
-    >
+    <section className="relative overflow-hidden bg-transparent px-4 pb-28 pt-16 text-white sm:px-6 lg:px-8 min-h-[85vh] flex items-center">
       {/* Style for custom animations */}
       <style>{`
         @keyframes gradient-shift {
@@ -62,29 +47,6 @@ export default function Banner() {
           animation: gradient-shift 6s ease infinite;
         }
       `}</style>
-
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)]" />
-
-      {/* Dynamic Mouse Aura Glow */}
-      {isHovered && (
-        <div
-          className="pointer-events-none absolute h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/10 blur-[120px] transition-all duration-300 ease-out"
-          style={{
-            left: `${mousePos.x}px`,
-            top: `${mousePos.y}px`,
-          }}
-        />
-      )}
-
-      {/* Static Glows */}
-      <div className="absolute left-1/4 top-0 h-[400px] w-[400px] rounded-full bg-violet-500/10 blur-3xl" />
-      <div className="absolute right-1/4 bottom-10 h-[400px] w-[400px] rounded-full bg-fuchsia-500/10 blur-3xl" />
-
-      {/* Constellation Dots */}
-      <div className="absolute bottom-20 left-20 h-1.5 w-1.5 rounded-full bg-violet-500/50 blur-[1px]" />
-      <div className="absolute right-24 top-40 h-1.5 w-1.5 rounded-full bg-indigo-500/50 blur-[1px]" />
-      <div className="absolute bottom-32 right-1/3 h-1 w-1 rounded-full bg-fuchsia-500/50 blur-[1px]" />
 
       <div className="relative mx-auto max-w-7xl w-full ">
         <div className="lg:col-span-7 flex flex-col items-center">
@@ -109,8 +71,9 @@ export default function Banner() {
 
           {/* Description */}
           <p className="mt-6 text-base sm:text-lg text-white/60 text-center leading-relaxed max-w-xl">
-            HireLoop is the next-generation developer-first career engine. Upload
-            your profile and let our AI matchmaker connect you with elite tech teams.
+            HireLoop is the next-generation developer-first career engine.
+            Upload your profile and let our AI matchmaker connect you with elite
+            tech teams.
           </p>
 
           {/* Micro Highlights */}
@@ -171,7 +134,7 @@ export default function Banner() {
               {/* Search Button */}
               <Button
                 onClick={handleSearch}
-                className="h-12 px-6 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold shadow-lg shadow-violet-600/20 hover:shadow-violet-600/40 hover:scale-[1.01] active:scale-[0.99] transition-all"
+                className="h-12 w-full sm:w-auto px-6 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold shadow-lg shadow-violet-600/20 hover:shadow-violet-600/40 hover:scale-[1.01] active:scale-[0.99] transition-all"
               >
                 Find Jobs
               </Button>
@@ -202,4 +165,3 @@ export default function Banner() {
     </section>
   );
 }
-

@@ -1,8 +1,6 @@
 'use client';
 
 import { BriefcaseBusiness, Building2, Users, Star } from 'lucide-react';
-import globeImg from '@/assets/images/globe.png';
-import Image from 'next/image';
 
 const stats = [
   {
@@ -33,23 +31,8 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="relative overflow-hidden bg-black py-24 text-white">
-      {/* Globe Background */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Image
-          src={globeImg}
-          alt="Globe Background"
-          className="pointer-events-none absolute top-0 w-full h-auto opacity-60"
-        />
-      </div>
+    <section className="relative overflow-hidden bg-transparent py-24 text-white">
 
-      {/* Gradient Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.35),transparent_45%)]" />
-
-      {/* Stars Effect */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="h-full w-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
-      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
@@ -66,7 +49,7 @@ export default function StatsSection() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map(item => {
             const Icon = item.icon;
 
