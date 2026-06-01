@@ -74,20 +74,22 @@ const Pricing = () => {
           <div className="flex bg-[#0b0b0f] border border-white/10 rounded-full p-1 shadow-inner max-w-fit">
             <Button
               onClick={() => setBillingCycle('monthly')}
+              variant={billingCycle === 'monthly' ? 'solid' : 'light'}
               className={`px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer ${
                 billingCycle === 'monthly'
                   ? 'bg-white text-black shadow-md'
-                  : 'text-white/60 hover:text-white'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
               }`}
             >
               Monthly
             </Button>
             <Button
               onClick={() => setBillingCycle('yearly')}
+              variant={billingCycle === 'yearly' ? 'solid' : 'light'}
               className={`px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 billingCycle === 'yearly'
                   ? 'bg-white text-black shadow-md'
-                  : 'text-white/60 hover:text-white'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
               }`}
             >
               Yearly
