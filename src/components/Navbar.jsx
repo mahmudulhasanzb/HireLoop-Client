@@ -1,16 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Link } from '@heroui/react';
+import { Avatar, Button, Dropdown, Label, Link } from '@heroui/react';
 import {
   Menu,
   X,
   BriefcaseBusiness,
   Building2,
   CreditCard,
+  ChevronDown,
+  Home,
+  User,
 } from 'lucide-react';
 import { authClient, useSession } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { ArrowRightFromSquare, Gear, Persons } from '@gravity-ui/icons';
 
 const navItems = [
   {
@@ -30,6 +34,29 @@ const navItems = [
   },
 ];
 
+const privateNavItems = [
+  {
+    label: 'Dashboard',
+    href: '/dashboard',
+    icon: Home,
+  },
+  {
+    label: 'Profile',
+    href: '/profile',
+    icon: User,
+  },
+  {
+    label: 'Settings',
+    href: '/settings',
+    icon: Gear,
+  },
+  {
+    label: 'Admin Panel',
+    href: '/admin',
+    icon: Home,
+  },
+];
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
@@ -40,7 +67,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     await authClient.signOut();
     router.refresh();
-    router.push('/signin');
+    router.push('/');
   };
 
   return (
@@ -81,6 +108,7 @@ export default function Navbar() {
           </ul>
 
           <div className="h-6 w-px bg-white/10" />
+
           {!user ? (
             <div className="flex items-center gap-3">
               <Link href="/signin">
@@ -100,25 +128,57 @@ export default function Navbar() {
             </div>
           ) : (
             <>
-              <h1 className="font-semibold text-white">{user?.name}</h1>
-              <Button
-                onClick={handleLogout}
-                className="rounded-2xl bg-red-300 px-6 font-semibold text-red-500 hover:scale-[1.02] transition-transform duration-200"
-              >
-                Logout
-              </Button>
+              <Dropdown>
+                <Dropdown.Trigger className="flex items-center gap-3 cursor-pointer">
+                  <Avatar>
+                    <Avatar.Image alt={user?.name} src={user?.image} />
+                    {/* <Avatar.Fallback delayMs={600}>
+                      {user?.name}
+                    </Avatar.Fallback> */}
+                  </Avatar>
+                  <h1 className="font-semibold text-white">{user?.name}</h1>
+                  <ChevronDown className="size-4 text-white" />
+                </Dropdown.Trigger>
+                <Dropdown.Popover>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/dashboard" textValue="Dashboard">
+                      <Label>Dashboard</Label>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item href="/profile" textValue="Profile">
+                      <Label>Profile</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/settings" textValue="Settings">
+                      <div className="flex w-full items-center justify-between gap-2">
+                        <Label>Settings</Label>
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/admin" textValue="Admin Panel">
+                      <div className="flex w-full items-center justify-between gap-2">
+                        <Label>Admin Panel</Label>
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item variant="danger" onClick={handleLogout}>
+                      <div className="flex w-full items-center justify-between gap-2">
+                        <Label>Log Out</Label>
+                        <ArrowRightFromSquare className="size-3.5 text-danger" />
+                      </div>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
             </>
           )}
         </div>
 
         {/* Mobile Menu Button */}
-        <button
+        <Button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden"
           aria-label="Toggle Menu"
         >
           {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile Menu */}
@@ -143,22 +203,48 @@ export default function Navbar() {
             );
           })}
 
-          <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
-            <Link href="/signin">
-              <Button
-                variant="flat"
-                className="h-12 bg-white/5 font-medium text-white"
-              >
-                Sign In
-              </Button>
-            </Link>
+          {user &&
+            privateNavItems.map(item => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white"
+                >
+                  <Icon size={18} />
+                  {item.label}
+                </Link>
+              );
+            })}
 
-            <Link href="/signup">
-              <Button className="h-12 bg-white font-semibold text-black">
-                Sign Up
+          {!user ? (
+            <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
+              <Link href="/signin">
+                <Button
+                  variant="flat"
+                  className="h-12 bg-white/5 font-medium text-white"
+                >
+                  Sign In
+                </Button>
+              </Link>
+
+              <Link href="/signup">
+                <Button className="h-12 bg-white font-semibold text-black">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
+              <Button
+                className="bg-white/5 font-medium text-red-400 hover:bg-white/10"
+                onClick={handleLogout}
+              >
+                Logout
               </Button>
-            </Link>
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>
