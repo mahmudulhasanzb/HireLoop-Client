@@ -2,7 +2,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Form, Input, Link } from '@heroui/react';
+import {
+  Button,
+  Form,
+  Input,
+  Label,
+  Link,
+  Radio,
+  RadioGroup,
+} from '@heroui/react';
 
 import { Lock, Mail, User } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
@@ -24,12 +32,13 @@ export default function SignUpPage() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
-    const { name, email, password, image } = userData;
+    const { name, email, role, password, image } = userData;
 
     const { data, error } = await authClient.signUp.email(
       {
         name,
         email,
+        role,
         password,
         image,
       },
@@ -104,7 +113,7 @@ export default function SignUpPage() {
               }}
             />
           </div>
-
+          {/* Role selection style*/}
           {/* <div className="flex flex-col gap-1.5">
             <label className="text-sm font-medium text-white">
               Select Role
@@ -150,6 +159,24 @@ export default function SignUpPage() {
               </div>
             </div>
           </div> */}
+
+          {/* Role radio style */}
+          <RadioGroup
+            defaultValue="seeker"
+            name="role"
+            orientation="horizontal"
+          >
+            {roles.map(role => (
+              <Radio key={role.key} value={role.key}>
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                <Radio.Content>
+                  <Label>{role.label}</Label>
+                </Radio.Content>
+              </Radio>
+            ))}
+          </RadioGroup>
 
           <Input
             isRequired
