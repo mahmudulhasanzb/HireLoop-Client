@@ -53,6 +53,9 @@ const RecruiterDashboardHomePage = () => {
         <DashboardStats statsData={statsData} />
       </div>
 
+      <div>
+        
+      </div>
 
     </div>
   );
