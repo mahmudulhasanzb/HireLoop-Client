@@ -16,6 +16,8 @@ import {
 } from "@heroui/react";
 import { Briefcase, Globe } from "@gravity-ui/icons";
 import toast from "react-hot-toast";
+import { createJob } from "@/lib/actions/jobs";
+import { redirect } from "next/navigation";
 
 export default function PostJobPage() {
     // Mock configuration for recruiter's authenticated state
@@ -66,10 +68,15 @@ export default function PostJobPage() {
             isPubliclyVisible: true,
         };
 
-        console.log("Job Payload:", payload);
-        toast.success("Job posted successfully!");
-        e.target.reset();
-        setIsRemote(false);
+      const res = await createJob(payload)
+      if (res.insertedId) {
+        toast.success('Job created successfully')
+        e.currentTarget.reset()
+        setIsRemote(false)
+        redirect('/dashboard/recruiter')
+      } else {
+        toast.error('Failed to create job')
+      }
     };
 
     // Dark styles styled to match your image reference layout
