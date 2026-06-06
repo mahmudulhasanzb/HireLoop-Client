@@ -4,6 +4,7 @@ import { getCompanyJobs } from '@/lib/api/jobs'
 const RecruiterJobs = async () => {
   const companyId = 'company_123' // todo
   const jobs = await getCompanyJobs(companyId)
+  console.log(jobs)
   return (
     <div>Recruiter/Company manage Jobs List</div>
   )

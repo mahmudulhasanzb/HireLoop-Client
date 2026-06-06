@@ -1,4 +1,9 @@
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-const getCompanyJobs = async (companyId) => {
-  const res = await fetch(`${baseUrl}/api/jobs?companyId=${companyId}&status=${status}`)
+export const getCompanyJobs = async (companyId, status) => {
+  let url = `${baseUrl}/api/jobs?companyId=${companyId}`;
+  if (status) {
+    url += `&status=${status}`;
+  }
+  const res = await fetch(url);
+  return res.json();
 }
