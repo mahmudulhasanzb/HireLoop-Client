@@ -1,7 +1,7 @@
 
 
-import { Bell, Envelope, Gear, House, LayoutSideContentLeft, Magnifier, Person} from "@gravity-ui/icons";
-import {Button, Drawer} from "@heroui/react";
+import { Envelope, Gear, House, LayoutSideContentLeft, Person, Briefcase } from "@gravity-ui/icons";
+import { Button, Drawer } from "@heroui/react";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
@@ -19,6 +19,7 @@ export function DashboardSideBar() {
     <nav className="flex flex-col gap-1">
       {navItems.map(item => (
         <Link
+          href={item.href}
           key={item.label}
           className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
           type="button"

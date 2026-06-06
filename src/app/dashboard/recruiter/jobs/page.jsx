@@ -5,7 +5,7 @@ const RecruiterJobs = async () => {
   const companyId = 'company_123' // todo
   const jobs = await getCompanyJobs(companyId)
   return (
-    <div>Recruiter/Company Jobs List</div>
+    <div>Recruiter/Company manage Jobs List</div>
   )
 }
 
