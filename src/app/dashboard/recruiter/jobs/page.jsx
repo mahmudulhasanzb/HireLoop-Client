@@ -2,6 +2,8 @@ import React from 'react';
 import { getCompanyJobs } from '@/lib/api/jobs';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 const RecruiterJobs = async () => {
   const companyId = 'company_123'; // todo
   const jobs = (await getCompanyJobs(companyId)) || [];
