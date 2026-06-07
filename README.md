@@ -1,49 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HireLoop Client 🚀
 
-## Getting Started
+A modern recruitment platform built on Next.js, React, and MongoDB, featuring a
+highly-interactive recruiter dashboard and secure authentication.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🎨 Design & Tech Stack
+
+HireLoop is designed with a premium, sleek aesthetic and uses a modern stack:
+
+- **Framework**: Next.js 16 (App Router) & React 19
+- **Styling**: Tailwind CSS v4 & Vanilla CSS
+- **Component Library**: HeroUI (formerly NextUI)
+- **Authentication**: Better Auth with MongoDB adapter
+- **Database**: MongoDB (via official Driver)
+- **Icons & Feedback**: Lucide React, Gravity UI Icons, React Hot Toast
+
+---
+
+## ✨ Features
+
+- **Recruiter Dashboard**: Manage company details and job postings.
+- **Job Board Management**: Full CRUD-like capability for recruiter-centric job
+  posts.
+- **Dynamic Job Forms**: Form-level validation, interactive toggles
+  (remote/on-site), and status updates.
+- **Beautiful UI Components**: Premium dark-mode tables, responsive navigation,
+  custom badges, and smooth transitions.
+- **Secure Authentication**: Integration with Better Auth for safe session
+  handling and recruiter login flows.
+
+---
+
+## 📁 Key Directory Structure
+
+```text
+src/
+├── app/                  # Next.js App Router
+│   ├── (main)/           # Home and authentication routes
+│   ├── api/              # Backend routes (auth endpoints)
+│   └── dashboard/        # Recruiter portals & job management
+├── components/           # Reusable UI components
+├── lib/                  # Shared utilities
+│   ├── api/              # API Client (Jobs endpoints, etc.)
+│   └── auth-client.js    # Better Auth client config
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates
-as you edit the file.
+## ⚙️ Getting Started
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
+### 1. Prerequisites
 
-## Learn More
+Ensure you have [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io/)
+installed.
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create a `.env` file in the root directory:
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
+```env
+MONGODB_URI=your_mongodb_connection_string
+BETTER_AUTH_SECRET=your_better_auth_secret
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
 
-## Deploy on Vercel
+### 3. Installation
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+Install dependencies using `pnpm`:
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+```bash
+pnpm install
+```
+
+### 4. Running Locally
+
+Start the development server:
+
+```bash
+pnpm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the
+application.
+
+---
+
+## 🛠️ Build and Production
+
+To build the project for production:
+
+```bash
+pnpm run build
+```
+
+To run the production build locally:
+
+```bash
+pnpm run start
+```
