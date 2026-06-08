@@ -1,6 +1,7 @@
 import React from 'react';
 import { getCompanyJobs } from '@/lib/api/jobs';
 import Link from 'next/link';
+import { Pencil, Trash2 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,12 +33,13 @@ const RecruiterJobs = async () => {
                 <th className="px-6 py-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase">Job Type</th>
                 <th className="px-6 py-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase">Salary Range</th>
                 <th className="px-6 py-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase">Status</th>
+                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-800/50">
               {jobs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-12 text-center text-zinc-500 text-sm">
+                  <td colSpan={6} className="px-6 py-12 text-center text-zinc-500 text-sm">
                     No job posts found.
                   </td>
                 </tr>
@@ -89,6 +91,26 @@ const RecruiterJobs = async () => {
                         <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium border capitalize ${badgeStyles}`}>
                           {job.status || 'Active'}
                         </span>
+                      </td>
+
+                      {/* Actions */}
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex items-center justify-end gap-2">
+                          <button 
+                            type="button" 
+                            className="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors cursor-pointer"
+                            title="Edit Job"
+                          >
+                            <Pencil className="w-4 h-4" />
+                          </button>
+                          <button 
+                            type="button" 
+                            className="p-1.5 text-zinc-400 hover:text-red-400 hover:bg-red-950/30 rounded-lg transition-colors cursor-pointer"
+                            title="Delete Job"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );
