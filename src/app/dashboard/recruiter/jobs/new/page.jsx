@@ -78,7 +78,7 @@ export default function PostJobPage() {
       toast.success('Job created successfully');
       e.target.reset();
       setIsRemote(false);
-      redirect('/dashboard/recruiter');
+      redirect('/dashboard/recruiter/jobs');
     } else {
       toast.error('Failed to create job');
     }
