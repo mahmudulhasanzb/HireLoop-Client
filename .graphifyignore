@@ -1,0 +1,10 @@
+# Ignore non-code files to make it a code-only corpus
+*.md
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.webp
+*.ico
